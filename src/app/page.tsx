@@ -14,6 +14,7 @@ export default function HomePage() {
     downloadCanvas,
     changeBackgroundColor,
     currentBackgroundColor,
+    addChristmasItem,
   } = useFabric()
 
   return (
@@ -34,14 +35,23 @@ export default function HomePage() {
             downloadCanvas={downloadCanvas}
             changeBackgroundColor={changeBackgroundColor}
             currentBackgroundColor={currentBackgroundColor}
+            addChristmasItem={addChristmasItem}
           />
-          <div className="flex flex-col justify-center text-center items-center text-sm md:flex-row">
+          <div className="flex flex-col justify-center text-center items-center text-sm md:flex-row ">
             <a
-              className="text-balance leading-loose text-muted-foreground  font-medium hover:text-blue-700"
+              className="text-balance leading-loose text-muted-foreground font-medium hover:text-red-400"
+              href="https://x.com/intent/follow?screen_name=aydengen"
+              target="_blank"
+            >
+              Built by @Ayden
+            </a>
+            &nbsp;
+            <a
+              className="text-balance leading-loose text-muted-foreground font-medium hover:text-blue-700"
               href="https://x.com/intent/follow?screen_name=sujjeeee"
               target="_blank"
             >
-              Built by Sujjeee
+              Thanks @Sujjeee
             </a>
           </div>
         </div>

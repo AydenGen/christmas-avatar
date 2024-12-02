@@ -15,7 +15,7 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Just a Chill Guy",
+  title: "Christmas Avatar",
 }
 
 export default function RootLayout({

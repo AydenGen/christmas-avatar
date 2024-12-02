@@ -22,6 +22,7 @@ interface ToolbarProps {
   downloadCanvas: () => void
   changeBackgroundColor: (color: string) => void
   currentBackgroundColor: string
+  addChristmasItem: (type: string) => void
 }
 
 export function Toolbar({
@@ -33,6 +34,7 @@ export function Toolbar({
   downloadCanvas,
   changeBackgroundColor,
   currentBackgroundColor,
+  addChristmasItem,
 }: ToolbarProps) {
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
@@ -68,7 +70,7 @@ export function Toolbar({
             size={"icon"}
             className="rounded-full hover:animate-jelly tooltip shrink-0"
           >
-            <span className="tooltiptext">Background</span>
+            <span className="tooltiptext">Avatar</span>
             <input {...getInputProps()} />
             <Icons.background className="size-4" />
           </Button>
@@ -77,7 +79,7 @@ export function Toolbar({
               <Button
                 variant="outline"
                 size={"icon"}
-                className="rounded-full hover:animate-jelly tooltip shrink-0 "
+                className="rounded-full hover:animate-jelly tooltip shrink-0 hidden"
                 style={{ backgroundColor: currentBackgroundColor }}
               >
                 <span className="tooltiptext">Color</span>
@@ -99,10 +101,19 @@ export function Toolbar({
             <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
           </div>
           <Button
-            onClick={addChillGuy}
+            onClick={() => addChristmasItem('christmashat')}
             variant="outline"
             size={"icon"}
             className="rounded-full hover:animate-jelly tooltip shrink-0"
+          >
+            <span className="tooltiptext">Christmas Hat</span>
+            <img src="/christmashat.png" className="size-6" />
+          </Button>
+          <Button
+            onClick={addChillGuy}
+            variant="outline"
+            size={"icon"}
+            className="rounded-full hover:animate-jelly tooltip shrink-0 hidden"
           >
             <span className="tooltiptext">Chill Guy</span>
             <img
@@ -119,14 +130,14 @@ export function Toolbar({
             <span className="tooltiptext">Flip</span>
             <Icons.flip className="size-4" />
           </Button>
-          <div className="h-5">
+          <div className="h-5 hidden">
             <div className="mx-1.5 h-full w-px bg-[#e5e5e5]"></div>
           </div>
           <Button
             onClick={addText}
             variant="outline"
             size={"icon"}
-            className="rounded-full hover:animate-jelly tooltip shrink-0"
+            className="rounded-full hover:animate-jelly tooltip shrink-0 hidden"
           >
             <span className="tooltiptext">Text</span>
             <Icons.text className="size-4" />

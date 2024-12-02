@@ -4,7 +4,7 @@ import * as fabric from "fabric"
 import { useWindow } from "@/hooks/use-window"
 
 const CANVAS_DIMENSIONS = { default: 500, mobileMultiplier: 0.9 }
-const DEFAULT_BACKGROUND_COLOR = "#8d927b"
+const DEFAULT_BACKGROUND_COLOR = "#ffffff"
 const DEFAULT_TEXT_OPTIONS = {
   text: "Your Text Here",
   fontSize: 40,
@@ -72,9 +72,9 @@ export function useFabric() {
   function adjustCanvasSize(fabricCanvas: Canvas, isMobile: boolean) {
     const size = isMobile
       ? Math.min(
-          windowSize.width! * CANVAS_DIMENSIONS.mobileMultiplier,
-          CANVAS_DIMENSIONS.default,
-        )
+        windowSize.width! * CANVAS_DIMENSIONS.mobileMultiplier,
+        CANVAS_DIMENSIONS.default,
+      )
       : CANVAS_DIMENSIONS.default
 
     fabricCanvas.setDimensions({ width: size, height: size })
@@ -216,7 +216,7 @@ export function useFabric() {
 
     const link = document.createElement("a")
     link.href = dataURL
-    link.download = "meme.png"
+    link.download = "merrychristmas.png"
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
@@ -230,6 +230,38 @@ export function useFabric() {
     }
   }
 
+  async function addChristmasItem(type: string) {
+    if (!canvas) return
+
+    const imageUrl = `${process.env.NEXT_PUBLIC_APP_URL}/${type}.png`
+    const img = await FabricImage.fromURL(imageUrl)
+
+    if (!img) {
+      console.error("Failed to load image")
+      return
+    }
+
+    const { width, height } = canvas
+    const scale = Math.min(
+      (width! * 0.4) / img.width!,
+      (height! * 0.4) / img.height!
+    )
+
+    img.set({
+      scaleX: scale,
+      scaleY: scale,
+      left: width! / 2,
+      top: height! / 2,
+      originX: "center",
+      originY: "center",
+      selectable: true,
+    })
+
+    canvas.add(img)
+    canvas.setActiveObject(img)
+    canvas.renderAll()
+  }
+
   return {
     canvasRef,
     setBackgroundImage,
@@ -240,5 +272,6 @@ export function useFabric() {
     currentBackgroundColor,
     deleteSelectedObject,
     downloadCanvas,
+    addChristmasItem,
   }
 }
